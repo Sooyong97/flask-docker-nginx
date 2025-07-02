@@ -5,7 +5,8 @@ FROM python:3.10-slim
 WORKDIR /usr/src/app
 
 # 3. 시스템 패키지 업데이트 및 nginx 설치
-RUN apt-get update && apt-get install -y nginx
+##RUN apt-get update && apt-get install -y nginx
+RUN apt-get update && apt-get install -y nginx libgl1-mesa-glx libglib2.0-0
 
 # 4. 파이썬 라이브러리 설치
 COPY requirements.txt ./
