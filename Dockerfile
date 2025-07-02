@@ -12,10 +12,13 @@ RUN apt-get update && apt-get install -y nginx libgl1-mesa-glx libglib2.0-0
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN rm /etc/nginx/sites-enabled/default
 # 5. 소스코드 및 설정 파일 복사
 COPY ./app /usr/src/app/app
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
+
+WORKDIR /usr/src/app/app
 
 # 6. entrypoint 스크립트에 실행 권한 부여
 RUN chmod +x /usr/src/app/entrypoint.sh
