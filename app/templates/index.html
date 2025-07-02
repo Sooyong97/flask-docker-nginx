@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 색감 필터 프로토타입</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI 색감 필터 프로토타입 🎨</h1>
+        <p>필터를 적용할 원본 사진과 원하는 색감의 스타일 사진을 업로드하세요.</p>
+        
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="content">1. 원본 사진 선택</label>
+                <input type="file" name="content" id="content" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="style">2. 스타일 사진 선택</label>
+                <input type="file" name="style" id="style" accept="image/*" required>
+            </div>
+            <button type="submit">필터 적용하기</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if result_img %}
+        <div class="results">
+            <h2>결과</h2>
+            <div class="image-grid">
+                <div class="image-box">
+                    <h3>원본 사진</h3>
+                    <img src="{{ content_img }}" alt="원본 사진">
+                </div>
+                <div class="image-box">
+                    <h3>스타일 사진</h3>
+                    <img src="{{ style_img }}" alt="스타일 사진">
+                </div>
+                <div class="image-box">
+                    <h3>결과 사진</h3>
+                    <img src="{{ result_img }}" alt="결과 사진">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
