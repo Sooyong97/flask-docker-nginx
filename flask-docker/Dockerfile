@@ -12,10 +12,8 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 5. 소스코드 및 엔트리포인트 복사
-COPY ./app /usr/src/app/app
+COPY ./app /usr/src/app
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 
-# 6. 작업 디렉토리 이동 및 실행
-WORKDIR /usr/src/app/app
 CMD ["sh", "/usr/src/app/entrypoint.sh"]
 
